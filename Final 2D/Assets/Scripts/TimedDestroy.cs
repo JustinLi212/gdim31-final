@@ -4,4 +4,5 @@ using UnityEngine;
 // Use this to remove your explosion VFX when they're done playing.
 public class TimedDestroy : MonoBehaviour
 {
+    
 }

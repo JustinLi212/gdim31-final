@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,16 @@ public class Player : MonoBehaviour
     [SerializeField] private GameController _gameController;
     // Add member variables to store references to this GameObject's 
     //      Rigidbody, Animator, and SpriteRenderer.
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float _speed;
     [SerializeField] private float _jump;
+    [SerializeField] private float _attackCooldown;
 
     private bool _facingLeft;
-    private bool _isGrounded;
+    private bool _isGrounded = true;
+    private float _attackTime;
 
     // ------------------------------------------------------------------------
     // Add a built-in UNITY METHOD that runs EVERY FRAME.
@@ -21,11 +27,44 @@ public class Player : MonoBehaviour
         // Set animation parameters 
 
     // ------------------------------------------------------------------------
+    private void Update()
+    {
+        var horDir = Input.GetAxis("Horizontal");
+        rb.linearVelocityX = horDir * _speed * Time.deltaTime;
+        if (horDir != 0.0)
+        {
+            _facingLeft = horDir < 0; 
+            spriteRenderer.flipX = _facingLeft;
+        }
+
+        if (Input.GetButton("Jump") && _isGrounded)
+        {
+            _isGrounded = false;
+            rb.linearVelocityY = _jump;
+        }
+
+        _attackTime -= Time.deltaTime;
+        if (_attackTime <= 0f && Input.GetKeyDown(KeyCode.Space))
+        {
+            Kick();
+        }
+    }
+
     private void Kick()
     {
+        _attackTime = _attackCooldown;
         // Set animation parameter.
-
+        animator.SetTrigger("attack");
         // Either activate left or right kick based on character facing
+
+        if (_facingLeft)
+        {
+            _kickLeft.SetActive(true);
+        }
+        else
+        {
+            _kickRight.SetActive(true);
+        }
     }
 
     // ------------------------------------------------------------------------
@@ -33,4 +72,12 @@ public class Player : MonoBehaviour
     // Use this to avoid allowing the Player to double jump- they should
     //      collide with an object with the Ground tag before being able to
     //      jump again.
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var collisionTag = collision.gameObject.tag;
+        if (collisionTag.Equals("Ground") || collisionTag.Equals("Platform"))
+        {
+            _isGrounded = true;
+        }
+    }
 }

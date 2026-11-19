@@ -1826,6 +1826,7 @@ MonoBehaviour:
   _gameOverUI: {fileID: 1060814027}
   _player: {fileID: 629295612}
   _maxTimeSeconds: 30
+  requiredObjects: []
 --- !u!4 &269638588
 Transform:
   m_ObjectHideFlags: 0
@@ -3944,6 +3945,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HUD
   _checklistParent: {fileID: 435332887}
   _checklistItemPrefab: {fileID: 0}
+  commonText: {fileID: 0}
+  uncommonText: {fileID: 0}
+  rareText: {fileID: 0}
+  timerText: {fileID: 597781526}
 --- !u!1 &629295606
 GameObject:
   m_ObjectHideFlags: 0
@@ -3955,6 +3960,7 @@ GameObject:
   - component: {fileID: 629295609}
   - component: {fileID: 629295614}
   - component: {fileID: 629295613}
+  - component: {fileID: 629295615}
   - component: {fileID: 629295608}
   - component: {fileID: 629295612}
   m_Layer: 0
@@ -4055,7 +4061,10 @@ MonoBehaviour:
   _kickLeft: {fileID: 0}
   _kickRight: {fileID: 0}
   _gameController: {fileID: 269638587}
-  _speed: 8
+  rb: {fileID: 629295614}
+  animator: {fileID: 629295615}
+  spriteRenderer: {fileID: 629295608}
+  _speed: 1000
   _jump: 8
 --- !u!70 &629295613
 CapsuleCollider2D:
@@ -4120,7 +4129,29 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!95 &629295615
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629295606}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &657573721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,6 +4488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameController: {fileID: 269638587}
+  commonText: {fileID: 0}
+  uncommonText: {fileID: 0}
+  rareText: {fileID: 0}
+  finalText: {fileID: 0}
 --- !u!1 &1066863867
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     // Add a member variable that's a LIST (or ARRAY) of all of the objects
     //      that the player is required to kick.
     // This variable should be editable from the inspector.
+    [SerializeField] private List<GameObject> requiredObjects;
 
     private int _commonPoints;
     private int _uncommonPoints;
@@ -25,6 +26,7 @@ public class GameController : MonoBehaviour
         SetGameEnabled(false);
 
         // Tell the HUD what the required items are.
+        _hud.SetRequiredItems(requiredObjects);
     }
 
     // ------------------------------------------------------------------------
@@ -74,8 +76,9 @@ public class GameController : MonoBehaviour
         SetGameEnabled(false);
 
         // Calculate the player's total points.
-
+        var points = _commonPoints + _uncommonPoints * 2 + _rarePoints * 3;
         // Tell the GameOverUI.
+        _gameOverUI.Activate(_commonPoints, _uncommonPoints, _rarePoints, points);
     }
 
     // ------------------------------------------------------------------------
@@ -89,14 +92,25 @@ public class GameController : MonoBehaviour
     // ------------------------------------------------------------------------
     // You will need to ADD PARAMETERS to this method to represent the GameObject
     //  kicked and the rarity of that object.
-    public void Kicked()
+    public void Kicked(GameObject kickedObj, Rarity rarity)
     {
         // Use a switch statement.
         // Based on the rarity of the object kicked, change the number of points
         //      for that rarity category.
-        
+        switch (rarity)
+        {
+            case Rarity.Common:
+                _commonPoints++;
+                break;
+            case Rarity.Uncommon:
+                _uncommonPoints++;
+                break;
+            case Rarity.Rare:
+                _rarePoints++;
+                break;
+        }
 
         // Tell the HUD what item was kicked, and how many points we now have.
-        
+        _hud.KickedItem(kickedObj);
     }
 }

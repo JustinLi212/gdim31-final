@@ -13,15 +13,16 @@ public class ChecklistItemUI : MonoBehaviour
     public void SetItem (GameObject itemObject)
     {
         // Store the required itemObject in _requiredItem.
-
+        _requiredItem = itemObject;
         // Change our item sprite to the itemObject's SpriteRenderer's sprite.
-
+        _itemImage.sprite = itemObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     // ------------------------------------------------------------------------
     public void FoundItem ()
     {
         // Change our checkbox sprite to the filled checkbox version.
+        print("found an item!");
     }
 
 }
