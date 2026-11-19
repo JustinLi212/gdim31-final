@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         // Set animation parameters 
 
     // ------------------------------------------------------------------------
-    private void Update()
+    private void FixedUpdate()
     {
         var horDir = Input.GetAxis("Horizontal");
         rb.linearVelocityX = horDir * _speed * Time.deltaTime;

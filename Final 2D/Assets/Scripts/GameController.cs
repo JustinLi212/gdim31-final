@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
         if (_runGame)
         {
             _timeRemaining -= Time.deltaTime;
+            _timeRemaining = _timeRemaining > 0f ? _timeRemaining : 0f;
             _hud.UpdateTimerText(_timeRemaining);
 
             if (_timeRemaining <= 0)

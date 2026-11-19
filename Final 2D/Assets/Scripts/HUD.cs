@@ -58,6 +58,6 @@ public class HUD : MonoBehaviour
     public void UpdateTimerText (float timeLeft)
     {
         // Update the timer text.
-        timerText.text = (Mathf.CeilToInt(timeLeft)).ToString();
+        timerText.text = $"{Mathf.FloorToInt(timeLeft):00}:{timeLeft * 100 % 100 :00}";
     }
 }

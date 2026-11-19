@@ -20,10 +20,10 @@ public class GameOverUI : MonoBehaviour
         gameObject.SetActive(true);
 
         // Update the points text with the final scores.
-        commonText.text = commonPoints.ToString();
-        uncommonText.text = uncommonPoints.ToString();
-        rareText.text = rarePoints.ToString();
-        finalText.text = _itemString + finalPoints;
+        commonText.text = $"common: {commonPoints}";
+        uncommonText.text = $"uncommon: {uncommonPoints}";
+        rareText.text = $"rare: {rarePoints}";
+        finalText.text = $"{_itemString}{finalPoints}";
     }
 
     // ------------------------------------------------------------------------
