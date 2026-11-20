@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Add an enum to represent an item's rarity.
 public enum Rarity
@@ -38,6 +39,7 @@ public class Kickable : MonoBehaviour
     // ------------------------------------------------------------------------
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("kickable collided");
         // If this object was kicked, explode.
         if (_wasKicked)
         {
@@ -49,6 +51,8 @@ public class Kickable : MonoBehaviour
     private void Explode()
     {
         // Create the explosion VFX.
+        var explosion = Instantiate(_explosionVfxPrefab);
+        explosion.transform.position = transform.position;
 
         // Destroy this item.
         Destroy(this);

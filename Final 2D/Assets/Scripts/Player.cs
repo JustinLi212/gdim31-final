@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private bool _facingLeft;
     private bool _isGrounded = true;
     private float _attackTime;
+    private static readonly int WalkingHash = Animator.StringToHash("walking");
+    private static readonly int AttackHash = Animator.StringToHash("attack");
+    private static readonly int OnGroundHash = Animator.StringToHash("onGround");
 
     // ------------------------------------------------------------------------
     // Add a built-in UNITY METHOD that runs EVERY FRAME.
@@ -33,8 +36,13 @@ public class Player : MonoBehaviour
         rb.linearVelocityX = horDir * _speed * Time.deltaTime;
         if (horDir != 0.0)
         {
+            animator.SetBool(WalkingHash, true);
             _facingLeft = horDir < 0; 
             spriteRenderer.flipX = _facingLeft;
+        }
+        else
+        {
+            animator.SetBool(WalkingHash, false);
         }
 
         if (Input.GetButton("Jump") && _isGrounded)
@@ -42,9 +50,10 @@ public class Player : MonoBehaviour
             _isGrounded = false;
             rb.linearVelocityY = _jump;
         }
+        animator.SetBool(OnGroundHash, _isGrounded);
 
         _attackTime -= Time.deltaTime;
-        if (_attackTime <= 0f && Input.GetKeyDown(KeyCode.Space))
+        if (_attackTime <= 0f && Input.GetButton("Kick"))
         {
             Kick();
         }
@@ -54,7 +63,7 @@ public class Player : MonoBehaviour
     {
         _attackTime = _attackCooldown;
         // Set animation parameter.
-        animator.SetTrigger("attack");
+        animator.SetTrigger(AttackHash);
         // Either activate left or right kick based on character facing
 
         if (_facingLeft)
@@ -75,9 +84,8 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var collisionTag = collision.gameObject.tag;
-        if (collisionTag.Equals("Ground") || collisionTag.Equals("Platform"))
-        {
-            _isGrounded = true;
-        }
+        if (!collisionTag.Equals("Ground") && !collisionTag.Equals("Platform"))
+            return;
+        _isGrounded = true;
     }
 }

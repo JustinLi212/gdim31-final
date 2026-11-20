@@ -21,7 +21,8 @@ public class HUD : MonoBehaviour
         // For every entry in 'items',
         //      create a new ChecklistItemUI GameObject.
         // Set its parent to _checklistParent.
-        // Use the correct method in ChecklistItemUI to setup its required item.
+        // Use the correct method in ChecklistItemUI to set up its required item.
+        _checklistItems = new List<ChecklistItemUI>();
         foreach (var item in items)
         {
             var newItem = Instantiate(_checklistItemPrefab, _checklistParent);
@@ -49,9 +50,9 @@ public class HUD : MonoBehaviour
     public void UpdatePointsText (int commonPoints, int uncommonPoints, int rarePoints)
     {
         // Update all of the text.
-        // commonText.text = commonPoints.ToString();
-        // uncommonText.text = uncommonPoints.ToString();
-        // rareText.text = rarePoints.ToString();
+        commonText.text = $"Common: {commonPoints}";
+        uncommonText.text = $"Uncommon: {uncommonPoints}";
+        rareText.text = $"Rare: {rarePoints}";
     }
 
     // ------------------------------------------------------------------------

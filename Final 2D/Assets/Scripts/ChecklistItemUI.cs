@@ -19,10 +19,10 @@ public class ChecklistItemUI : MonoBehaviour
     }
 
     // ------------------------------------------------------------------------
-    public void FoundItem ()
+    public void FoundItem()
     {
         // Change our checkbox sprite to the filled checkbox version.
-        print("found an item!");
+        _checkImage.sprite = _filledCheckSprite;
     }
 
 }
