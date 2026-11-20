@@ -31,7 +31,7 @@ public class Kickable : MonoBehaviour
         // Set the 'was kicked' flag.
         _wasKicked = true;
         // Add the input force to the rigidbody to make the item fly.
-        _rigidbody.AddForce(force);
+        _rigidbody.AddForce(force, ForceMode2D.Impulse);
         // Let the GameController know this object was kicked.
         _gameController.Kicked(gameObject, rarity);
     }
@@ -53,8 +53,9 @@ public class Kickable : MonoBehaviour
         // Create the explosion VFX.
         var explosion = Instantiate(_explosionVfxPrefab);
         explosion.transform.position = transform.position;
+        explosion.GetComponent<AudioSource>().Play();
 
         // Destroy this item.
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

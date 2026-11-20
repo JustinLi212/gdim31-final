@@ -19,7 +19,6 @@ public class KickAttack : MonoBehaviour
     //      if so, Kick it!
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("kick attack colliding");
         if (other.gameObject.TryGetComponent<Kickable>(out var kickable))
         {
             kickable.Kick(_kickAmount);

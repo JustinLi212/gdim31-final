@@ -47,7 +47,7 @@ public class HUD : MonoBehaviour
     }
 
     // ------------------------------------------------------------------------
-    public void UpdatePointsText (int commonPoints, int uncommonPoints, int rarePoints)
+    public void UpdatePointsText(int commonPoints, int uncommonPoints, int rarePoints)
     {
         // Update all of the text.
         commonText.text = $"Common: {commonPoints}";

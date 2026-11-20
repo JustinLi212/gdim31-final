@@ -113,5 +113,6 @@ public class GameController : MonoBehaviour
 
         // Tell the HUD what item was kicked, and how many points we now have.
         _hud.KickedItem(kickedObj);
+        _hud.UpdatePointsText(_commonPoints, _uncommonPoints, _rarePoints);
     }
 }
