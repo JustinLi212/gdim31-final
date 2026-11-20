@@ -1998,7 +1998,7 @@ MonoBehaviour:
   _startGameUI: {fileID: 2014419989}
   _gameOverUI: {fileID: 1060814027}
   _player: {fileID: 629295612}
-  _maxTimeSeconds: 30
+  _maxTimeSeconds: 15
   requiredObjects:
   - {fileID: 658476986}
   - {fileID: 1621173186}
