@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37a2f875a761480ebf53db7f582938c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimedDestroy
-  _maxTime: 0.833
+  _maxTime: 1
 --- !u!82 &-6051109043239667469
 AudioSource:
   m_ObjectHideFlags: 0

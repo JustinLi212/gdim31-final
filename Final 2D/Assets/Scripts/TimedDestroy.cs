@@ -19,7 +19,7 @@ public class TimedDestroy : MonoBehaviour
         _time -= Time.deltaTime;
         if (_time <= 0.0f)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
