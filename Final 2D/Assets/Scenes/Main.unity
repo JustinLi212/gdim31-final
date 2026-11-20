@@ -2370,7 +2370,7 @@ MonoBehaviour:
   _startGameUI: {fileID: 2014419989}
   _gameOverUI: {fileID: 1060814027}
   _player: {fileID: 629295612}
-  _maxTimeSeconds: 15
+  _maxTimeSeconds: 20
   requiredObjects:
   - {fileID: 658476986}
   - {fileID: 1621173186}
@@ -4808,7 +4808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00.00
+  m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c237620f6bc4540e9a9da5ead3956f55, type: 2}
   m_sharedMaterial: {fileID: 8934293003593805794, guid: c237620f6bc4540e9a9da5ead3956f55, type: 2}
